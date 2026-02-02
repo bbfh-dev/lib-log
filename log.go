@@ -23,7 +23,7 @@ const (
 var Output io.Writer = os.Stdout
 var IsTerminal = true
 var UseColors = true
-var LogLevel = LEVEL_INFO
+var LogLevel = LEVEL_CACHE
 var mutex sync.Mutex
 
 func init() {
