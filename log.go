@@ -16,6 +16,7 @@ const (
 	LEVEL_DONE
 	LEVEL_WARN
 	LEVEL_INFO
+	LEVEL_CACHE
 	LEVEL_DEBUG
 )
 
@@ -38,6 +39,17 @@ func Debug(nesting uint, format string, args ...any) {
 				arrow(nesting)+
 				fmt.Sprintf(format, args...)+
 				optional(libescapes.ColorReset),
+		)
+	}
+}
+
+func Cached(nesting uint, format string, args ...any) {
+	if LogLevel >= LEVEL_CACHE {
+		log(
+			nesting,
+			"CACHED: ",
+			optional(libescapes.TextColorBrightMagenta),
+			fmt.Sprintf(format, args...),
 		)
 	}
 }

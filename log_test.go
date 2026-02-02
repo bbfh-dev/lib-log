@@ -12,6 +12,7 @@ func TestDemo(t *testing.T) {
 	liblog.UseColors = true
 
 	liblog.Debug(0, "This is a message")
+	liblog.Cached(0, "This is a message")
 	liblog.Info(0, "This is a message")
 	liblog.Warn(0, "This is a message")
 	liblog.Done(0, "This is a message")
