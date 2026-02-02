@@ -8,7 +8,6 @@ import (
 	"sync"
 
 	libescapes "github.com/bbfh-dev/lib-ansi-escapes"
-	"golang.org/x/term"
 )
 
 const (
@@ -21,24 +20,17 @@ const (
 )
 
 var Output io.Writer = os.Stdout
-var IsTerminal = true
-var UseColors = true
 var LogLevel = LEVEL_CACHE
 var mutex sync.Mutex
-
-func init() {
-	IsTerminal = term.IsTerminal(int(os.Stdout.Fd()))
-	UseColors = IsTerminal && os.Getenv("NO_COLOR") != "1"
-}
 
 func Debug(nesting uint, format string, args ...any) {
 	if LogLevel >= LEVEL_DEBUG {
 		fmt.Fprintln(
 			Output,
-			optional(libescapes.TrueColor(128, 128, 128))+
+			libescapes.Optional(libescapes.TrueColor(128, 128, 128))+
 				arrow(nesting)+
 				fmt.Sprintf(format, args...)+
-				optional(libescapes.ColorReset),
+				libescapes.Optional(libescapes.ColorReset),
 		)
 	}
 }
@@ -48,7 +40,7 @@ func Cached(nesting uint, format string, args ...any) {
 		log(
 			nesting,
 			"CACHED: ",
-			optional(libescapes.TextColorBrightMagenta),
+			libescapes.Optional(libescapes.TextColorBrightMagenta),
 			fmt.Sprintf(format, args...),
 		)
 	}
@@ -59,7 +51,7 @@ func Info(nesting uint, format string, args ...any) {
 		log(
 			nesting,
 			"",
-			optional(libescapes.TextColorBrightBlue),
+			libescapes.Optional(libescapes.TextColorBrightBlue),
 			fmt.Sprintf(format, args...),
 		)
 	}
@@ -70,7 +62,7 @@ func Warn(nesting uint, format string, args ...any) {
 		log(
 			nesting,
 			"WARN: ",
-			optional(libescapes.TextColorBrightYellow),
+			libescapes.Optional(libescapes.TextColorBrightYellow),
 			fmt.Sprintf(format, args...),
 		)
 	}
@@ -81,7 +73,7 @@ func Done(nesting uint, format string, args ...any) {
 		log(
 			nesting,
 			"DONE: ",
-			optional(libescapes.TextColorBrightGreen),
+			libescapes.Optional(libescapes.TextColorBrightGreen),
 			fmt.Sprintf(format, args...),
 		)
 	}
@@ -92,7 +84,7 @@ func Error(nesting uint, format string, args ...any) {
 		log(
 			nesting,
 			"ERROR: ",
-			optional(libescapes.TextColorBrightRed),
+			libescapes.Optional(libescapes.TextColorBrightRed),
 			fmt.Sprintf(format, args...),
 		)
 	}
@@ -105,7 +97,7 @@ func log(nesting uint, prefix, color, body string) {
 	fmt.Fprintln(Output, color+
 		arrow(nesting)+
 		prefix+
-		optional(libescapes.ColorReset)+
+		libescapes.Optional(libescapes.ColorReset)+
 		body)
 }
 
@@ -118,11 +110,4 @@ func arrow(nesting uint) string {
 	}
 
 	return strings.Repeat("  ", int(nesting)) + "-> "
-}
-
-func optional(ansi string) string {
-	if UseColors {
-		return ansi
-	}
-	return ""
 }

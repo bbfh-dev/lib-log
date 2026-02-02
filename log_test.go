@@ -3,14 +3,22 @@ package liblog_test
 import (
 	"testing"
 
+	libescapes "github.com/bbfh-dev/lib-ansi-escapes"
 	liblog "github.com/bbfh-dev/lib-log"
 )
 
 func TestDemo(t *testing.T) {
 	liblog.Output = t.Output()
 	liblog.LogLevel = liblog.LEVEL_DEBUG
-	liblog.UseColors = true
 
+	libescapes.AllowANSI = false
+	print()
+
+	libescapes.AllowANSI = true
+	print()
+}
+
+func print() {
 	liblog.Debug(0, "This is a message")
 	liblog.Cached(0, "This is a message")
 	liblog.Info(0, "This is a message")

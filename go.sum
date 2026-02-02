@@ -1,5 +1,5 @@
-github.com/bbfh-dev/lib-ansi-escapes v0.3.6 h1:Ns0cC2b/UMD1PE1srvvPi1y+j+JskzmeYOxF+LrSoyk=
-github.com/bbfh-dev/lib-ansi-escapes v0.3.6/go.mod h1:y3dPAVcS/PXHWs851zB/bR3GQx+PyLHsH3HgadfPM+8=
+github.com/bbfh-dev/lib-ansi-escapes v0.3.7 h1:BBWSb5qBZ8v3000rmB3ahMpNLRezZcjfxZitehXcKak=
+github.com/bbfh-dev/lib-ansi-escapes v0.3.7/go.mod h1:WXU/UVZMHm3snngvLxj7dIOV/2i0S91p7qAu+MOgdqM=
 golang.org/x/sys v0.40.0 h1:DBZZqJ2Rkml6QMQsZywtnjnnGvHza6BTfYFWY9kjEWQ=
 golang.org/x/sys v0.40.0/go.mod h1:OgkHotnGiDImocRcuBABYBEXf8A9a87e/uXjp9XT3ks=
 golang.org/x/term v0.39.0 h1:RclSuaJf32jOqZz74CkPA9qFuVTX7vhLlpfj/IGWlqY=
